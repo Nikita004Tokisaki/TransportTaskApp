@@ -1,0 +1,59 @@
+﻿<Window x:Class="TransportTaskApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Транспортная задача" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Панель управления -->
+        <WrapPanel Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock Text="Поставщики (A):" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox x:Name="TxtSuppliers" Width="40" Text="3" Margin="0,0,15,0"/>
+            <TextBlock Text="Потребители (B):" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox x:Name="TxtConsumers" Width="40" Text="5" Margin="0,0,15,0"/>
+            <Button Content="1. Создать поля" Click="BtnCreateTable_Click" Width="130" Margin="0,0,15,0"/>
+            <Button Content="2. Сев.-Западный угол" Click="BtnNorthWest_Click" Width="170" Margin="0,0,15,0" Background="#0000CC" Foreground="White"/>
+            <Button Content="3. Мин. элементы" Click="BtnMinCost_Click" Width="140" Background="#0000CC" Foreground="White"/>
+        </WrapPanel>
+
+        <!-- Блок ввода исходных данных -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Матрица тарифов -->
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Матрица тарифов (Стоимость доставки):" FontWeight="Bold" Margin="0,0,0,5"/>
+                <DataGrid x:Name="DataGridTariffs" AutoGenerateColumns="True" CanUserAddRows="False" MaxHeight="250"/>
+            </StackPanel>
+
+            <!-- Запасы -->
+            <StackPanel Grid.Column="1" Margin="15,0,15,0">
+                <TextBlock Text="Запасы (A):" FontWeight="Bold" Margin="0,0,0,5" HorizontalAlignment="Center"/>
+                <DataGrid x:Name="DataGridSupply" AutoGenerateColumns="True" CanUserAddRows="False" Width="80" MaxHeight="250"/>
+            </StackPanel>
+
+            <!-- Потребности -->
+            <StackPanel Grid.Column="2">
+                <TextBlock Text="Потребности (B):" FontWeight="Bold" Margin="0,0,0,5" HorizontalAlignment="Center"/>
+                <DataGrid x:Name="DataGridDemand" AutoGenerateColumns="True" CanUserAddRows="False" Width="100" MaxHeight="250"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Блок вывода результата -->
+        <TextBlock Grid.Row="2" Text="Результат (Опорный план: [Объем поставки] / Тариф):" FontWeight="Bold" Margin="0,15,0,5"/>
+        <DataGrid x:Name="DataGridResult" Grid.Row="3" AutoGenerateColumns="True" CanUserAddRows="False" Background="#E6F0FA" MaxHeight="250"/>
+
+        <!-- Итоговая стоимость -->
+        <TextBlock x:Name="TxtCost" Grid.Row="4" FontSize="16" FontWeight="Bold" Foreground="#CC0000" Margin="0,10,0,0"/>
+    </Grid>
+</Window>
